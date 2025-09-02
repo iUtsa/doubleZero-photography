@@ -1,0 +1,1187 @@
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Double Zero Photography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f5f5f5;
+            --accent-color: #ff6b35;
+            --text-dark: #2c2c2c;
+            --text-light: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-third: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-fourth: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation - Same as other pages */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a.active::after,
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--gradient-secondary);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Service Categories */
+        .service-category {
+            margin-bottom: 120px;
+        }
+
+        .service-category:nth-child(even) .service-content {
+            flex-direction: row-reverse;
+        }
+
+        .service-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 60px;
+        }
+
+        .service-image {
+            flex: 1;
+            height: 400px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-info {
+            flex: 1;
+        }
+
+        .service-info h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-info p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .service-features {
+            margin-top: 30px;
+        }
+
+        .service-features h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Package Cards */
+        .packages-section {
+            margin-top: 60px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .package-card.featured::before {
+            background: var(--gradient-secondary);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+        }
+
+        .package-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .package-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .package-duration {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .package-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-fourth);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .package-button {
+            width: 100%;
+            padding: 15px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .package-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .featured .package-button {
+            background: var(--gradient-secondary);
+        }
+
+        /* Process Section */
+        .process-section {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            padding: 80px;
+            border-radius: 30px;
+            margin: 120px 0;
+        }
+
+        .process-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .step-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 120px 0;
+        }
+
+        .faq-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            padding: 25px;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .faq-answer {
+            padding: 0 25px 25px;
+            color: #666;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px;
+            background: var(--gradient-third);
+            border-radius: 30px;
+            color: var(--text-light);
+            margin: 120px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            color: var(--text-light);
+            padding: 40px 50px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 0 20px;
+            }
+
+            .main-content {
+                padding: 60px 20px;
+            }
+
+            .service-content {
+                flex-direction: column !important;
+                gap: 40px;
+            }
+
+            .process-section,
+            .cta-section {
+                padding: 40px 20px;
+                margin: 60px 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="4" fill="none"/>
+                    <circle cx="70" cy="70" r="25" stroke="currentColor" stroke-width="4" fill="none"/>
+                    <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                    <circle cx="70" cy="70" r="8" fill="currentColor"/>
+                </svg>
+                Double Zero Photography
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="investment.html">Investment</a></li>
+                <li><a href="booking.html">Book</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Services</h1>
+            <p>Professional photography services tailored to capture your most important moments</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Portrait Photography -->
+        <section class="service-category">
+            <div class="service-content">
+                <div class="service-image" style="background: var(--gradient-primary);">
+                    <!-- Placeholder for portrait photography image -->
+                </div>
+                <div class="service-info">
+                    <h2>Portrait Photography</h2>
+                    <p>Capture your personality and essence with our professional portrait sessions. Whether you need headshots for your business, family portraits, or personal branding photos, we create images that truly represent who you are.</p>
+                    <p>Our portrait sessions are comfortable, relaxed, and designed to bring out your natural confidence and beauty.</p>
+                    
+                    <div class="service-features">
+                        <h3>What's Included:</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Pre-session consultation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Professional lighting setup</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Multiple outfit changes</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>High-resolution digital gallery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-section">
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <div class="package-name">Essential</div>
+                            <div class="package-price">$299</div>
+                            <div class="package-duration">1 hour session</div>
+                        </div>
+                        <ul class="package-features">
+                            <li><div class="check-icon">✓</div> 15 edited photos</li>
+                            <li><div class="check-icon">✓</div> Online gallery</li>
+                            <li><div class="check-icon">✓</div> 2 outfit changes</li>
+                            <li><div class="check-icon">✓</div> Digital downloads</li>
+                        </ul>
+                        <a href="contact.html" class="package-button">Book Now</a>
+                    </div>
+
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <div class="package-name">Professional</div>
+                            <div class="package-price">$499</div>
+                            <div class="package-duration">2 hour session</div>
+                        </div>
+                        <ul class="package-features">
+                            <li><div class="check-icon">✓</div> 30 edited photos</li>
+                            <li><div class="check-icon">✓</div> Online gallery</li>
+                            <li><div class="check-icon">✓</div> Unlimited outfit changes</li>
+                            <li><div class="check-icon">✓</div> Professional prints included</li>
+                            <li><div class="check-icon">✓</div> Makeup artist consultation</li>
+                        </ul>
+                        <a href="contact.html" class="package-button">Book Now</a>
+                    </div>
+
+                    <div class="package-card">
+                        <div class="package-header">
+                            <div class="package-name">Premium</div>
+                            <div class="package-price">$799</div>
+                            <div class="package-duration">Half day session</div>
+                        </div>
+                        <ul class="package-features">
+                            <li><div class="check-icon">✓</div> 50+ edited photos</li>
+                            <li><div class="check-icon">✓</div> Multiple locations</li>
+                            <li><div class="check-icon">✓</div> Professional styling</li>
+                            <li><div class="check-icon">✓</div> Premium print package</li>
+                            <li><div class="check-icon">✓</div> Same-day preview</li>
+                        </ul>
+                        <a href="contact.html" class="package-button">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Photography -->
+        <section class="service-category">
+            <div class="service-content">
+                <div class="service-image" style="background: var(--gradient-secondary);">
+                    <!-- Placeholder for event photography image -->
+                </div>
+                <div class="service-info">
+                    <h2>Event Photography</h2>
+                    <p>From intimate gatherings to grand celebrations, we capture the emotions, connections, and special moments that make your events unforgettable. Our unobtrusive style ensures natural, candid photos while never missing the important moments.</p>
+                    <p>Perfect for weddings, corporate events, parties, and milestone celebrations.</p>
+                    
+                    <div class="service-features">
+                        <h3>Event Types We Cover:</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Weddings & Engagements</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Corporate Events</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Birthday Parties</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓
+
+<div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Graduation Ceremonies</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Anniversary Celebrations</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Baby Showers & Gender Reveals</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wedding Photography -->
+        <section class="service-category">
+            <div class="service-content">
+                <div class="service-image" style="background: var(--gradient-third);">
+                    <!-- Placeholder for wedding photography image -->
+                </div>
+                <div class="service-info">
+                    <h2>Wedding Photography</h2>
+                    <p>Your wedding day is one of the most important days of your life. We understand the significance of every moment, from the quiet preparations to the joyful celebration. Our wedding photography captures not just images, but the emotions, love, and joy that make your day truly special.</p>
+                    <p>We offer both traditional and contemporary wedding photography styles, including Indian wedding ceremonies with full cultural understanding and respect.</p>
+                    
+                    <div class="service-features">
+                        <h3>Wedding Specialties:</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Traditional Weddings</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Indian Wedding Ceremonies</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Destination Weddings</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Engagement Sessions</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Bridal Portraits</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Cinematography Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commercial Photography -->
+        <section class="service-category">
+            <div class="service-content">
+                <div class="service-image" style="background: var(--gradient-fourth);">
+                    <!-- Placeholder for commercial photography image -->
+                </div>
+                <div class="service-info">
+                    <h2>Commercial Photography</h2>
+                    <p>Professional imagery that elevates your brand and tells your business story. From product photography to corporate headshots, we create compelling visuals that help your business stand out in today's competitive market.</p>
+                    <p>Our commercial services are designed to meet the unique needs of businesses, entrepreneurs, and organizations of all sizes.</p>
+                    
+                    <div class="service-features">
+                        <h3>Commercial Services:</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Product Photography</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Corporate Headshots</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Brand Photography</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Real Estate Photography</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Food & Restaurant</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>Architecture & Interiors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Services Grid -->
+        <section class="additional-services">
+            <h2 style="font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 60px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Additional Services</h2>
+            
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 80px;">
+                
+                <div class="service-card" style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); text-align: center; transition: all 0.3s ease;">
+                    <div class="service-icon" style="width: 80px; height: 80px; margin: 0 auto 30px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px; color: var(--primary-color);">Mini Sessions</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Perfect for quick updates, couples photos, or small family sessions. Fast turnaround with professional quality.</p>
+                    <a href="investment.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">View Packages →</a>
+                </div>
+
+                <div class="service-card" style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); text-align: center; transition: all 0.3s ease;">
+                    <div class="service-icon" style="width: 80px; height: 80px; margin: 0 auto 30px; background: var(--gradient-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 10V6C22 4.89543 21.1046 4 20 4H4C2.89543 4 2 4.89543 2 6V10M22 10V14M22 10H18M2 10V14M2 10H6M22 14V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V14M22 14H18M2 14H6" stroke="white" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="2" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px; color: var(--primary-color);">Graduation Photography</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Celebrate your academic achievements with professional graduation photos that capture this milestone moment.</p>
+                    <a href="investment.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">View Packages →</a>
+                </div>
+
+                <div class="service-card" style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); text-align: center; transition: all 0.3s ease;">
+                    <div class="service-icon" style="width: 80px; height: 80px; margin: 0 auto 30px; background: var(--gradient-third); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.84 4.61C19.32 3.89 17.55 4.29 16.41 5.43L12 9.84L7.59 5.43C6.45 4.29 4.68 3.89 3.16 4.61C1.64 5.33 1 7.09 2 8.59L7.76 16.84C10.81 20.87 13.19 20.87 16.24 16.84L22 8.59C23 7.09 22.36 5.33 20.84 4.61Z" stroke="white" stroke-width="2" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px; color: var(--primary-color);">Maternity & Newborn</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Gentle and beautiful photography capturing the wonder of pregnancy and the precious early days of your newborn.</p>
+                    <a href="investment.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">View Packages →</a>
+                </div>
+
+                <div class="service-card" style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); text-align: center; transition: all 0.3s ease;">
+                    <div class="service-icon" style="width: 80px; height: 80px; margin: 0 auto 30px; background: var(--gradient-fourth); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
+                            <path d="M8 14S9.5 16 12 16S16 14 16 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M9 9H9.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M15 9H15.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px; color: var(--primary-color);">Family Sessions</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Capture the love, laughter, and connections that make your family unique with natural, heartwarming portraits.</p>
+                    <a href="investment.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">View Packages →</a>
+                </div>
+
+                <div class="service-card" style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); text-align: center; transition: all 0.3s ease;">
+                    <div class="service-icon" style="width: 80px; height: 80px; margin: 0 auto 30px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="white" stroke-width="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5" fill="white"/>
+                            <path d="M21 15L16 10L5 21" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px; color: var(--primary-color);">Boudoir Photography</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Intimate, elegant photography celebrating confidence and femininity in a comfortable, professional environment.</p>
+                    <a href="investment.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">View Packages →</a>
+                </div>
+
+                <div class="service-card" style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); text-align: center; transition: all 0.3s ease;">
+                    <div class="service-icon" style="width: 80px; height: 80px; margin: 0 auto 30px; background: var(--gradient-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px; color: var(--primary-color);">Fashion & Model Portfolio</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Professional portfolio development for models, actors, and fashion industry professionals.</p>
+                    <a href="investment.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">View Packages →</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section">
+            <h2>Our Process</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Consultation</div>
+                    <div class="step-description">We discuss your vision, requirements, and preferences to create a customized photography plan.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Planning</div>
+                    <div class="step-description">Detailed planning including location scouting, timeline creation, and equipment preparation.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Photography</div>
+                    <div class="step-description">Professional photography session with expert guidance and direction for the best results.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Editing</div>
+                    <div class="step-description">Professional post-processing and retouching to ensure every image meets our high standards.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Delivery</div>
+                    <div class="step-description">Final delivery through our online gallery with high-resolution downloads and printing options.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How far in advance should I book?</span>
+                        <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        We recommend booking 4-6 weeks in advance for regular sessions and 6-12 months for weddings. However, we often accommodate shorter notice bookings based on availability.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What happens if it rains on our outdoor session day?</span>
+                        <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        We monitor weather closely and will reschedule if conditions aren't suitable. We also have backup indoor locations and covered outdoor spots for light rain situations.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does it take to receive our photos?</span>
+                        <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        Regular sessions: 1-2 weeks. Weddings and large events: 4-6 weeks. Mini sessions: 3-5 business days. Rush delivery available for an additional fee.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you provide raw/unedited photos?</span>
+                        <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        We provide professionally edited photos as part of our artistic process. Raw files are available for purchase separately upon request.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can we request specific poses or shots?</span>
+                        <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        Absolutely! We encourage clients to share inspiration photos and specific requests. We'll incorporate your ideas while adding our professional creative guidance.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you travel for destination sessions?</span>
+                        <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        Yes! We love destination photography. Travel fees apply based on location and duration. Contact us for a custom quote for your destination session or wedding.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Get Started?</h2>
+            <p>Let's discuss your photography needs and create something beautiful together</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-button">
+                    <span>Book Consultation</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="investment.html" class="cta-button secondary">
+                    <span>View Investment</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Double Zero Photography. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="#" title="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="#" title="Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const answer = button.nextElementSibling;
+                const isActive = faqItem.classList.contains('active');
+
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                });
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Service card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>

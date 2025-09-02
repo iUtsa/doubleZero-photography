@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment - Double Zero Photography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f5f5f5;
+            --accent-color: #ff6b35;
+            --text-dark: #2c2c2c;
+            --text-light: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-third: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-fourth: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-gold: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%);
+            --shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a.active::after,
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--gradient-gold);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Package Grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 120px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .package-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--accent-color);
+        }
+
+        .package-card.featured::before {
+            background: var(--gradient-gold);
+            height: 6px;
+        }
+
+        .package-card.premium::before {
+            background: var(--gradient-secondary);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+        }
+
+        .package-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-gold);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .package-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .package-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .package-price.starting::before {
+            content: 'Starting at ';
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .package-duration {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .package-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-fourth);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 12px;
+            color: white;
+        }
+
+        .premium-icon {
+            background: var(--gradient-gold);
+        }
+
+        .package-button {
+            width: 100%;
+            padding: 15px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .package-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .featured .package-button {
+            background: var(--gradient-gold);
+        }
+
+        .premium .package-button {
+            background: var(--gradient-secondary);
+        }
+
+        /* Service Categories */
+        .service-category {
+            margin-bottom: 120px;
+        }
+
+        .category-divider {
+            height: 2px;
+            background: var(--gradient-primary);
+            margin: 80px 0;
+            border-radius: 2px;
+        }
+
+        /* Add-ons Section */
+        .addons-section {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            padding: 80px;
+            border-radius: 30px;
+            margin: 120px 0;
+        }
+
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .addon-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .addon-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .addon-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .addon-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .addon-description {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Payment Info */
+        .payment-info {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 60px;
+            border-radius: 20px;
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .payment-info h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .payment-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .payment-item h4 {
+            color: var(--accent-color);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px;
+            background: var(--gradient-third);
+            border-radius: 30px;
+            color: var(--text-light);
+            margin: 120px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            color: var(--text-light);
+            padding: 40px 50px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 0 20px;
+            }
+
+            .main-content {
+                padding: 60px 20px;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .package-card.featured {
+                transform: none;
+            }
+
+            .package-card.featured:hover {
+                transform: translateY(-10px);
+            }
+
+            .addons-section,
+            .cta-section {
+                padding: 40px 20px;
+                margin: 60px 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="4" fill="none"/>
+                    <circle cx="70" cy="70" r="25" stroke="currentColor" stroke-width="4" fill="none"/>
+                    <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                    <circle cx="70" cy="70" r="8" fill="currentColor"/>
+                </svg>
+                Double Zero Photography
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="investment.html">Investment</a></li>
+                <li><a href="booking.html">Book</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Investment</h1>
+            <p>Transparent pricing for exceptional photography services tailored to your needs</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Wedding Photography Packages -->
+        <section class="service-category">
+            <div class="section-header">
+                <h2 class="section-title">Wedding Photography</h2>
+                <p class="section-subtitle">Comprehensive wedding photography packages to capture every precious moment of your special day</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Essential</div>
+                        <div class="package-price starting">$2,499</div>
+                        <div class="package-duration">6 hours coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 6 hours wedding day coverage</li>
+                        <li><div class="check-icon">✓</div> 400+ edited high-resolution images</li>
+                        <li><div class="check-icon">✓</div> Online gallery with download access</li>
+                        <li><div class="check-icon">✓</div> USB drive with all images</li>
+                        <li><div class="check-icon">✓</div> Print release included</li>
+                        <li><div class="check-icon">✓</div> Professional editing & color correction</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Classic</div>
+                        <div class="package-price starting">$3,799</div>
+                        <div class="package-duration">8 hours coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 8 hours wedding day coverage</li>
+                        <li><div class="check-icon">✓</div> 600+ edited high-resolution images</li>
+                        <li><div class="check-icon">✓</div> Complimentary engagement session</li>
+                        <li><div class="check-icon">✓</div> Online gallery with download access</li>
+                        <li><div class="check-icon">✓</div> USB drive & custom photo box</li>
+                        <li><div class="check-icon">✓</div> 25 premium prints (5x7)</li>
+                        <li><div class="check-icon">✓</div> Print release included</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="package-header">
+                        <div class="package-name">Premium</div>
+                        <div class="package-price starting">$4,999</div>
+                        <div class="package-duration">10 hours coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 10 hours wedding day coverage</li>
+                        <li><div class="check-icon">✓</div> 800+ edited high-resolution images</li>
+                        <li><div class="check-icon">✓</div> Engagement session included</li>
+                        <li><div class="check-icon">✓</div> Second photographer</li>
+                        <li><div class="check-icon">✓</div> Online gallery with download access</li>
+                        <li><div class="check-icon">✓</div> Premium USB & leather photo box</li>
+                        <li><div class="check-icon">✓</div> 50 premium prints (5x7 & 8x10)</li>
+                        <li><div class="check-icon">✓</div> Same-day sneak peek (5 images)</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Luxury</div>
+                        <div class="package-price starting">$6,799</div>
+                        <div class="package-duration">12 hours coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> 12 hours wedding day coverage</li>
+                        <li><div class="check-icon premium-icon">✓</div> 1000+ edited high-resolution images</li>
+                        <li><div class="check-icon premium-icon">✓</div> Engagement session included</li>
+                        <li><div class="check-icon premium-icon">✓</div> Second photographer</li>
+                        <li><div class="check-icon premium-icon">✓</div> Rehearsal dinner coverage (2 hours)</li>
+                        <li><div class="check-icon premium-icon">✓</div> Premium photo album (50 pages)</li>
+                        <li><div class="check-icon premium-icon">✓</div> Same-day highlight reel</li>
+                        <li><div class="check-icon premium-icon">✓</div> Professional prints package</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Ultimate</div>
+                        <div class="package-price starting">$8,999</div>
+                        <div class="package-duration">Full weekend coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> Full weekend coverage (3 days)</li>
+                        <li><div class="check-icon premium-icon">✓</div> Unlimited edited images</li>
+                        <li><div class="check-icon premium-icon">✓</div> Engagement & bridal sessions</li>
+                        <li><div class="check-icon premium-icon">✓</div> Two photographers</li>
+                        <li><div class="check-icon premium-icon">✓</div> Cinematography included</li>
+                        <li><div class="check-icon premium-icon">✓</div> Luxury photo album (75 pages)</li>
+                        <li><div class="check-icon premium-icon">✓</div> Parent albums (2)</li>
+                        <li><div class="check-icon premium-icon">✓</div> Wedding film & highlight reel</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="category-divider"></div>
+
+        <!-- Indian Wedding Photography Packages -->
+        <section class="service-category">
+            <div class="section-header">
+                <h2 class="section-title">Indian Wedding Photography</h2>
+                <p class="section-subtitle">Specialized packages for Indian wedding ceremonies with full cultural understanding and multi-day event coverage</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Sangam</div>
+                        <div class="package-price starting">$3,999</div>
+                        <div class="package-duration">2 days coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 2 days event coverage</li>
+                        <li><div class="check-icon">✓</div> Mehendi & wedding ceremony</li>
+                        <li><div class="check-icon">✓</div> 600+ edited high-resolution images</li>
+                        <li><div class="check-icon">✓</div> Traditional & candid photography</li>
+                        <li><div class="check-icon">✓</div> Online gallery & USB drive</li>
+                        <li><div class="check-icon">✓</div> Cultural ceremony expertise</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Riti</div>
+                        <div class="package-price starting">$5,499</div>
+                        <div class="package-duration">3 days coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 3 days full event coverage</li>
+                        <li><div class="check-icon">✓</div> Mehendi, Sangeet & wedding day</li>
+                        <li><div class="check-icon">✓</div> 800+ edited high-resolution images</li>
+                        <li><div class="check-icon">✓</div> Second photographer included</li>
+                        <li><div class="check-icon">✓</div> Traditional rituals documentation</li>
+                        <li><div class="check-icon">✓</div> Highlight reel of ceremonies</li>
+                        <li><div class="check-icon">✓</div> Premium photo album</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="package-header">
+                        <div class="package-name">Vivaha</div>
+                        <div class="package-price starting">$7,299</div>
+                        <div class="package-duration">4 days coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 4 days comprehensive coverage</li>
+                        <li><div class="check-icon">✓</div> All pre-wedding ceremonies</li>
+                        <li><div class="check-icon">✓</div> 1000+ edited high-resolution images</li>
+                        <li><div class="check-icon">✓</div> Two photographers</li>
+                        <li><div class="check-icon">✓</div> Cinematography included</li>
+                        <li><div class="check-icon">✓</div> Traditional & contemporary styles</li>
+                        <li><div class="check-icon">✓</div> Luxury photo album (60 pages)</li>
+                        <li><div class="check-icon">✓</div> Wedding film & highlight reel</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Maharaja</div>
+                        <div class="package-price starting">$9,999</div>
+                        <div class="package-duration">5 days coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> 5 days complete celebration</li>
+                        <li><div class="check-icon premium-icon">✓</div> All ceremonies & receptions</li>
+                        <li><div class="check-icon premium-icon">✓</div> 1500+ edited high-resolution images</li>
+                        <li><div class="check-icon premium-icon">✓</div> Three photographers</li>
+                        <li><div class="check-icon premium-icon">✓</div> Full cinematography coverage</li>
+                        <li><div class="check-icon premium-icon">✓</div> Drone photography included</li>
+                        <li><div class="check-icon premium-icon">✓</div> Premium albums for families</li>
+                        <li><div class="check-icon premium-icon">✓</div> Same-day highlight delivery</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Rajkumari</div>
+                        <div class="package-price starting">$12,999</div>
+                        <div class="package-duration">Full week coverage</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> Full week celebration coverage</li>
+                        <li><div class="check-icon premium-icon">✓</div> All ceremonies & destinations</li>
+                        <li><div class="check-icon premium-icon">✓</div> Unlimited edited images</li>
+                        <li><div class="check-icon premium-icon">✓</div> Full photography team</li>
+                        <li><div class="check-icon premium-icon">✓</div> Complete cinematography</li>
+                        <li><div class="check-icon premium-icon">✓</div> Aerial photography & videography</li>
+                        <li><div class="check-icon premium-icon">✓</div> Luxury album collection</li>
+                        <li><div class="check-icon premium-icon">✓</div> Documentary-style film</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="category-divider"></div>
+
+        <!-- Portrait Photography Packages -->
+        <section class="service-category">
+            <div class="section-header">
+                <h2 class="section-title">Portrait Photography</h2>
+                <p class="section-subtitle">Professional portrait sessions for individuals, families, and personal branding</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Regular</div>
+                        <div class="package-price">$299</div>
+                        <div class="package-duration">1 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 1 hour studio or outdoor session</li>
+                        <li><div class="check-icon">✓</div> 15 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Online gallery access</li>
+                        <li><div class="check-icon">✓</div> 2 outfit changes</li>
+                        <li><div class="check-icon">✓</div> High-resolution digital downloads</li>
+                        <li><div class="check-icon">✓</div> Print release included</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="popular-badge">Popular</div>
+                    <div class="package-header">
+                        <div class="package-name">Pro</div>
+                        <div class="package-price">$499</div>
+                        <div class="package-duration">1.5 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 1.5 hour extended session</li>
+                        <li><div class="check-icon">✓</div> 30 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Online gallery & USB drive</li>
+                        <li><div class="check-icon">✓</div> Unlimited outfit changes</li>
+                        <li><div class="check-icon">✓</div> Multiple locations/backgrounds</li>
+                        <li><div class="check-icon">✓</div> Professional prints package</li>
+                        <li><div class="check-icon">✓</div> Makeup touch-up included</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Premium</div>
+                        <div class="package-price">$799</div>
+                        <div class="package-duration">2 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> 2 hour comprehensive session</li>
+                        <li><div class="check-icon premium-icon">✓</div> 50+ professionally edited images</li>
+                        <li><div class="check-icon premium-icon">✓</div> Multiple locations included</li>
+                        <li><div class="check-icon premium-icon">✓</div> Professional styling consultation</li>
+                        <li><div class="check-icon premium-icon">✓</div> Hair & makeup artist included</li>
+                        <li><div class="check-icon premium-icon">✓</div> Premium print package</li>
+                        <li><div class="check-icon premium-icon">✓</div> Same-day sneak peek</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="category-divider"></div>
+
+        <!-- Graduation Photography Packages -->
+        <section class="service-category">
+            <div class="section-header">
+                <h2 class="section-title">Graduation Photography</h2>
+                <p class="section-subtitle">Celebrate your academic milestone with professional graduation photography</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Regular</div>
+                        <div class="package-price">$199</div>
+                        <div class="package-duration">45 minute session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 45 minute graduation session</li>
+                        <li><div class="check-icon">✓</div> 20 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Campus locations included</li>
+                        <li><div class="check-icon">✓</div> Cap & gown + casual outfits</li>
+                        <li><div class="check-icon">✓</div> Online gallery access</li>
+                        <li><div class="check-icon">✓</div> Digital downloads included</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="popular-badge">Popular</div>
+                    <div class="package-header">
+                        <div class="package-name">Pro</div>
+                        <div class="package-price">$349</div>
+                        <div class="package-duration">1 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 1 hour extended session</li>
+                        <li><div class="check-icon">✓</div> 35 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Multiple campus locations</li>
+                        <li><div class="check-icon">✓</div> Individual & family photos</li>
+                        <li><div class="check-icon">✓</div> Multiple outfit changes</li>
+                        <li><div class="check-icon">✓</div> USB drive & prints package</li>
+                        <li><div class="check-icon">✓</div> Social media ready images</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Premium</div>
+                        <div class="package-price">$549</div>
+                        <div class="package-duration">1.5 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> 1.5 hour comprehensive session</li>
+                        <li><div class="check-icon premium-icon">✓</div> 50+ professionally edited images</li>
+                        <li><div class="check-icon premium-icon">✓</div> On & off campus locations</li>
+                        <li><div class="check-icon premium-icon">✓</div> Extended family group photos</li>
+                        <li><div class="check-icon premium-icon">✓</div> Professional graduation album</li>
+                        <li><div class="check-icon premium-icon">✓</div> Premium print package</li>
+                        <li><div class="check-icon premium-icon">✓</div> Celebration party coverage</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="category-divider"></div>
+
+        <!-- Mini Sessions -->
+        <section class="service-category">
+            <div class="section-header">
+                <h2 class="section-title">Mini Sessions</h2>
+                <p class="section-subtitle">Quick, affordable sessions perfect for updates and special occasions</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Regular</div>
+                        <div class="package-price">$149</div>
+                        <div class="package-duration">30 minute session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 30 minute focused session</li>
+                        <li><div class="check-icon">✓</div> 10 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Single location</li>
+                        <li><div class="check-icon">✓</div> 1 outfit recommendation</li>
+                        <li><div class="check-icon">✓</div> Online gallery access</li>
+                        <li><div class="check-icon">✓</div> 48-hour delivery</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="popular-badge">Popular</div>
+                    <div class="package-header">
+                        <div class="package-name">Pro</div>
+                        <div class="package-price">$249</div>
+                        <div class="package-duration">45 minute session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 45 minute extended session</li>
+                        <li><div class="check-icon">✓</div> 20 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> 2 locations/backgrounds</li>
+                        <li><div class="check-icon">✓</div> 2 outfit changes</li>
+                        <li><div class="check-icon">✓</div> USB drive included</li>
+                        <li><div class="check-icon">✓</div> 24-hour sneak peek</li>
+                        <li><div class="check-icon">✓</div> Print credits ($50)</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Premium</div>
+                        <div class="package-price">$399</div>
+                        <div class="package-duration">1 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> 1 hour full session</li>
+                        <li><div class="check-icon premium-icon">✓</div> 30 professionally edited images</li>
+                        <li><div class="check-icon premium-icon">✓</div> Multiple locations</li>
+                        <li><div class="check-icon premium-icon">✓</div> Unlimited outfit changes</li>
+                        <li><div class="check-icon premium-icon">✓</div> Professional prints package</li>
+                        <li><div class="check-icon premium-icon">✓</div> Same-day preview</li>
+                        <li><div class="check-icon premium-icon">✓</div> Social media package</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="category-divider"></div>
+
+        <!-- Family Photography -->
+        <section class="service-category">
+            <div class="section-header">
+                <h2 class="section-title">Family Photography</h2>
+                <p class="section-subtitle">Capture your family's love and connections with natural, heartwarming portraits</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Regular</div>
+                        <div class="package-price">$399</div>
+                        <div class="package-duration">1 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 1 hour family session</li>
+                        <li><div class="check-icon">✓</div> 25 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Outdoor location included</li>
+                        <li><div class="check-icon">✓</div> Up to 6 family members</li>
+                        <li><div class="check-icon">✓</div> Online gallery access</li>
+                        <li><div class="check-icon">✓</div> Digital downloads</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="popular-badge">Popular</div>
+                    <div class="package-header">
+                        <div class="package-name">Pro</div>
+                        <div class="package-price">$599</div>
+                        <div class="package-duration">1.5 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 1.5 hour extended session</li>
+                        <li><div class="check-icon">✓</div> 40 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Multiple locations</li>
+                        <li><div class="check-icon">✓</div> Extended family welcome</li>
+                        <li><div class="check-icon">✓</div> Individual portraits included</li>
+                        <li><div class="check-icon">✓</div> USB drive & print credits</li>
+                        <li><div class="check-icon">✓</div> Outfit consultation</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Premium</div>
+                        <div class="package-price">$899</div>
+                        <div class="package-duration">2 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> 2 hour comprehensive session</li>
+                        <li><div class="check-icon premium-icon">✓</div> 60+ professionally edited images</li>
+                        <li><div class="check-icon premium-icon">✓</div> Multiple locations & setups</li>
+                        <li><div class="check-icon premium-icon">✓</div> Multi-generational families</li>
+                        <li><div class="check-icon premium-icon">✓</div> Professional styling help</li>
+                        <li><div class="check-icon premium-icon">✓</div> Premium album included</li>
+                        <li><div class="check-icon premium-icon">✓</div> Wall art consultation</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Book Session</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="category-divider"></div>
+
+        <!-- Commercial Photography -->
+        <section class="service-category">
+            <div class="section-header">
+                <h2 class="section-title">Commercial Photography</h2>
+                <p class="section-subtitle">Professional business photography to elevate your brand and marketing</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Regular</div>
+                        <div class="package-price starting">$599</div>
+                        <div class="package-duration">2 hour session</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> 2 hour business session</li>
+                        <li><div class="check-icon">✓</div> 30 professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Product or headshot focus</li>
+                        <li><div class="check-icon">✓</div> Studio or on-location</li>
+                        <li><div class="check-icon">✓</div> Commercial usage rights</li>
+                        <li><div class="check-icon">✓</div> High-resolution files</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Get Quote</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="popular-badge">Popular</div>
+                    <div class="package-header">
+                        <div class="package-name">Pro</div>
+                        <div class="package-price starting">$999</div>
+                        <div class="package-duration">Half day</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon">✓</div> Half day (4 hours) coverage</li>
+                        <li><div class="check-icon">✓</div> 50+ professionally edited images</li>
+                        <li><div class="check-icon">✓</div> Multiple product/service angles</li>
+                        <li><div class="check-icon">✓</div> Team headshots included</li>
+                        <li><div class="check-icon">✓</div> Branding consultation</li>
+                        <li><div class="check-icon">✓</div> Social media package</li>
+                        <li><div class="check-icon">✓</div> Extended commercial rights</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Get Quote</a>
+                </div>
+
+                <div class="package-card premium">
+                    <div class="package-header">
+                        <div class="package-name">Premium</div>
+                        <div class="package-price starting">$1,899</div>
+                        <div class="package-duration">Full day</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><div class="check-icon premium-icon">✓</div> Full day (8 hours) coverage</li>
+                        <li><div class="check-icon premium-icon">✓</div> 100+ professionally edited images</li>
+                        <li><div class="check-icon premium-icon">✓</div> Complete brand photography</li>
+                        <li><div class="check-icon premium-icon">✓</div> Video content included</li>
+                        <li><div class="check-icon premium-icon">✓</div> Multiple locations</li>
+                        <li><div class="check-icon premium-icon">✓</div> Full marketing package</li>
+                        <li><div class="check-icon premium-icon">✓</div> Unlimited commercial usage</li>
+                    </ul>
+                    <a href="contact.html" class="package-button">Get Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add-ons Section -->
+        <section class="addons-section">
+            <div class="section-header">
+                <h2 class="section-title" style="color: var(--primary-color);">Add-On Services</h2>
+                <p class="section-subtitle">Enhance any package with these additional services</p>
+            </div>
+            
+            <div class="addons-grid">
+                <div class="addon-card">
+                    <div class="addon-name">Additional Hour</div>
+                    <div class="addon-price">$200</div>
+                    <div class="addon-description">Extend any session by one hour for more photos and flexibility</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-name">Second Photographer</div>
+                    <div class="addon-price">$400</div>
+                    <div class="addon-description">Additional photographer for more comprehensive coverage</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-name">Rush Delivery</div>
+                    <div class="addon-price">$150</div>
+                    <div class="addon-description">Receive your edited photos within 48 hours</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-name">Hair & Makeup</div>
+                    <div class="addon-price">$300</div>
+                    <div class="addon-description">Professional hair and makeup artist for your session</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-name">Engagement Session</div>
+                    <div class="addon-price">$450</div>
+                    <div class="addon-description">Pre-wedding engagement photo session</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-name">Cinematography</div>
+                    <div class="addon-price">$800</div>
+                    <div class="addon-description">Professional video coverage with highlight reel</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-name">Drone Photography</div>
+                    <div class="addon-price">$350</div>
+                    <div class="addon-description">Aerial photography and videography</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-name">Photo Album</div>
+                    <div class="addon-price">$400</div>
+                    <div class="addon-description">Premium leather-bound photo album (30 pages)</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-name">Travel Fee</div>
+                    <div class="addon-price">$2/mile</div>
+                    <div class="addon-description">Travel beyond 30 miles from studio location</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Information -->
+        <section class="payment-info">
+            <h3>Payment & Booking Information</h3>
+            <p>We believe in transparent pricing with no hidden fees. All packages include professional editing and high-resolution digital images.</p>
+            
+            <div class="payment-grid">
+                <div class="payment-item">
+                    <h4>Booking Process</h4>
+                    <p>50% retainer due at booking to secure your date. Remaining balance due 7 days before your session or event.</p>
+                </div>
+                
+                <div class="payment-item">
+                    <h4>Payment Methods</h4>
+                    <p>We accept cash, check, credit cards, Venmo, PayPal, and Zelle for your convenience.</p>
+                </div>
+                
+                <div class="payment-item">
+                    <h4>Cancellation Policy</h4>
+                    <p>Full refund for cancellations 30+ days prior. 50% refund for 14-30 days. No refund within 14 days of session.</p>
+                </div>
+                
+                <div class="payment-item">
+                    <h4>Delivery Timeline</h4>
+                    <p>Regular sessions: 1-2 weeks. Weddings: 4-6 weeks. Mini sessions: 3-5 business days. Rush delivery available.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Book Your Session?</h2>
+            <p>Let's discuss your photography needs and create a custom package that fits your vision and budget</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-button">
+                    <span>Book Consultation</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="contact.html" class="cta-button secondary">
+                    <span>Ask Questions</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.5 14.5C8.5 14.5 9.875 16 12 16S15.5 14.5 15.5 14.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Double Zero Photography. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="#" title="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="#" title="Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Package card hover effects
+        document.querySelectorAll('.package-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('featured')) {
+                    this.style.transform = 'translateY(-10px)';
+                } else {
+                    this.style.transform = 'scale(1.05) translateY(-10px)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('featured')) {
+                    this.style.transform = 'translateY(0)';
+                } else {
+                    this.style.transform = 'scale(1.05) translateY(0)';
+                }
+            });
+        });
+
+        // Addon card hover effects
+        document.querySelectorAll('.addon-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.package-card, .addon-card, .payment-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Price highlight effect
+        document.querySelectorAll('.package-price').forEach(price => {
+            price.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            price.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Smooth section transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.service-category');
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'all 0.8s ease';
+                sectionObserver.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
